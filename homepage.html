@@ -83,12 +83,14 @@
         });
 
         // Here we are going to fetch both variants
-        experiment.getVariants().then(variants => {
-            const heroVariant = variants["testforthefork"]; 
-            const navVariant = variants["testforthefork2"]; 
+        experiment.fetch().then(() => {
+            const heroVariant = variants("testforthefork").value; 
+            const navVariant = variants("testforthefork2").value; 
 
             applyHeroSectionVariant(heroVariant);
             applyNavVariant(navVariant);
+        }).catch(error => {
+            console.error("Error fetching experiment variants:", error);
         });
 
         function applyHeroSectionVariant(variant) {
