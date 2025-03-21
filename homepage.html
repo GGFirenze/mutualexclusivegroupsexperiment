@@ -82,7 +82,6 @@
             });
         });
 
-        // Here we are going to fetch both variants
         experiment.fetch().then(() => {
             const heroVariant = experiment.variant("testforthefork").value; 
             const navVariant = experiment.variant("testforthefork2").value; 
