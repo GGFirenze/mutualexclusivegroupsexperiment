@@ -84,8 +84,8 @@
 
         // Here we are going to fetch both variants
         experiment.fetch().then(() => {
-            const heroVariant = variants("testforthefork").value; 
-            const navVariant = variants("testforthefork2").value; 
+            const heroVariant = experiment.variant("testforthefork").value; 
+            const navVariant = experiment.variant("testforthefork2").value; 
 
             applyHeroSectionVariant(heroVariant);
             applyNavVariant(navVariant);
