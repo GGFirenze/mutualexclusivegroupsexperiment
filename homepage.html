@@ -49,6 +49,7 @@
                 console.error("Error fetching experiment variants:", error);
             });
 
+            // Apply Hero Section Variant based on the experiment variant
             function applyHeroSectionVariant(variant) {
                 let container = document.getElementById("hero-section");
 
@@ -65,10 +66,43 @@
 
                     setTimeout(() => {
                         document.getElementById('hero-btnn')?.addEventListener('click', () => {
+                            // Track the Explore Services Button Clicked event
                             amplitude.track('Explore Services Button Clicked', {
                                 button_name: "hero_btn",
                                 source: "homepage",
                                 variant: "banner"
+                            });
+
+                            // Track the Nav Button Clicked event
+                            document.getElementById('homepage')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "home",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('services')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "services",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('courses')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "courses",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('about')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "about",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('contacts')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "contacts",
+                                    source: "homepage"
+                                });
                             });
                         });
                     }, 0);
@@ -85,16 +119,50 @@
 
                     setTimeout(() => {
                         document.getElementById('hero-btnn')?.addEventListener('click', () => {
+                            // Track the Explore Services Button Clicked event
                             amplitude.track('Explore Services Button Clicked', {
                                 button_name: "hero_btn",
                                 source: "homepage",
                                 variant: "control"
+                            });
+
+                            // Track the Nav Button Clicked event
+                            document.getElementById('homepage')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "home",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('services')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "services",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('courses')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "courses",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('about')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "about",
+                                    source: "homepage"
+                                });
+                            });
+                            document.getElementById('contacts')?.addEventListener('click', () => {
+                                amplitude.track('Nav Button Clicked', {
+                                    button_name: "contacts",
+                                    source: "homepage"
+                                });
                             });
                         });
                     }, 0);
                 }
             }
 
+            // Apply Nav Section Variant based on experiment
             function applyNavVariant(variant) {
                 let navLinks = document.querySelector(".nav-links");
 
@@ -105,23 +173,6 @@
                     navLinks.style.textAlign = "right";
                 }
             }
-
-            function logNavButtonClick(buttonName) {
-                amplitude.track('Nav Button Clicked', {
-                    button_name: buttonName,
-                    source: "homepage"
-                });
-            }
-            
-            function setupNavEventListeners() {
-                document.getElementById('homepage').addEventListener('click', () => logNavButtonClick("home"));
-                document.getElementById('services').addEventListener('click', () => logNavButtonClick("services"));
-                document.getElementById('courses').addEventListener('click', () => logNavButtonClick("courses"));
-                document.getElementById('about').addEventListener('click', () => logNavButtonClick("about"));
-                document.getElementById('contacts').addEventListener('click', () => logNavButtonClick("contacts"));
-            }
-            
-            setupNavEventListeners();
 
         });
     </script>
