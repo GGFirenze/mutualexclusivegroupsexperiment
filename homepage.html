@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Train-IT</title>
     <link rel="stylesheet" href="trainIT.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/914b751213.js" crossorigin="anonymous"></script>
@@ -27,9 +26,8 @@
                 elementInteractions: false
             },
         });
-        
-        document.addEventListener('DOMContentLoaded', function() {
 
+        document.addEventListener('DOMContentLoaded', function() {
             const experiment = window.Experiment.initializeWithAmplitudeAnalytics('client-d99GRnmEsSd4UxU8zTwaKwQBmHC28UFd');
             experiment.fetch().then(() => {
                 const heroVariant = experiment.variant("testforthefork");
@@ -43,10 +41,10 @@
             }).catch(error => {
                 console.error("Error fetching experiment variants:", error);
             });
-            
+
             function applyHeroSectionVariant(variant) {
                 let container = document.getElementById("hero-section");
-                
+
                 if (variant === "banner") {
                     container.innerHTML = `
                         <div style="background-color: white; position: absolute; right: 20px; width: 30%; padding: 30px; border-radius: 10px;">
@@ -89,10 +87,10 @@
                     }, 0);
                 }
             }
-            
+
             function applyNavVariant(variant) {
                 let navLinks = document.querySelector(".nav-links");
-                
+
                 if (variant === "center") {
                     navLinks.style.textAlign = "center";
                     navLinks.style.width = "100%";
@@ -100,26 +98,19 @@
                     navLinks.style.textAlign = "right";
                 }
             }
-            
+
             function logNavButtonClick(buttonName) {
                 amplitude.track('Nav Button Clicked', {
                     button_name: buttonName,
                     source: "homepage"
                 });
             }
-            
+
             document.getElementById('homepage').addEventListener('click', () => logNavButtonClick("home"));
             document.getElementById('services').addEventListener('click', () => logNavButtonClick("services"));
             document.getElementById('courses').addEventListener('click', () => logNavButtonClick("courses"));
             document.getElementById('about').addEventListener('click', () => logNavButtonClick("about"));
             document.getElementById('contacts').addEventListener('click', () => logNavButtonClick("contacts"));
-            
-            document.getElementById('hero-btnn').addEventListener('click', () => {
-                amplitude.track('Explore Services Button Clicked', {
-                    button_name: "hero_btn",
-                    source: "homepage"
-                });
-            });
         });
     </script>
 </head>
@@ -148,10 +139,6 @@
             <h2>Take action now and find out how we help businesses in an ever-changing Tech world keep their employees up to date with their latest software acquisitions.</h2>
             <a href="#home" class="hero-btn" id="hero-btnn">Explore our services!</a>
         </div>
-    </section>
-
-    <section class="servizi">
-        <div></div>
     </section>
 </body>
 </html>
