@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Train-IT</title>
+    <link rel="stylesheet" href="trainit.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/914b751213.js" crossorigin="anonymous"></script>
     <script src="https://cdn.amplitude.com/script/4170bf54d2e9c69108287008edae409a.js"></script>
     <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.12.1-min.js.gz"></script>
-    <script type="text/javascript" src="https://cdn.amplitude.com/script/4170bf54d2e9c69108287008edae409a.experiment.js"></script>
+    <script src="https://cdn.amplitude.com/script/4170bf54d2e9c69108287008edae409a.experiment.js"></script>
     <script>
-        var sessionReplayTracking = window.sessionReplay.plugin({sampleRate: 1});
+        var sessionReplayTracking = window.sessionReplay.plugin({ sampleRate: 1 });
         window.amplitude.add(sessionReplayTracking);
         window.amplitude.init('4170bf54d2e9c69108287008edae409a', {
             fetchRemoteConfig: true,
@@ -18,14 +26,67 @@
                 elementInteractions: false
             },
         });
-
-        // Initialize Amplitude Experiment
         const experiment = Experiment.initializeWithAmplitudeAnalytics('4170bf54d2e9c69108287008edae409a');
+    </script>
+</head>
+    
+<body>
+    <section class="header">
+        <nav id="main-nav">
+            <a href="trainingorg.html" id="logo">
+                <img src="Train-IT logo(1).png" alt="Train-IT Logo">
+            </a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#home" id="homepage">Home</a></li>
+                    <li><a href="#servizi" id="services">Services</a></li>
+                    <li><a href="#corsi" id="courses">Courses</a></li>
+                    <li><a href="#chi-siamo" id="about">About</a></li>
+                    <li><a href="#contatti" id="contacts">Contacts</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        // Fetch both A/B test variants
+        <div class="text-box" id="hero-section">
+            <h1>Hire your tailored Technical Training services</h1>
+            <h2>Adopting new technology is as vital to the business as it is scary for your employees. Fear no more and leverage highly tailored Technical Training to increase adoption from the get-go.</h2>
+            <br>
+            <h2>Take action now and find out how we help businesses in an ever-changing Tech world keep their employees up to date with their latest software acquisitions.</h2>
+            <span id="hero-hand" style="display: none;">👉</span>
+            <a href="#home" class="hero-btn" id="hero-btnn">Explore our services!</a>
+            <span id="hero-hand2" style="display: none;">👈</span>
+        </div>
+    </section>
+
+    <section class="servizi">
+        <div></div>
+    </section>
+
+    <script>
+        function logNavButtonClick(buttonName) {
+            amplitude.track('Nav Button Clicked', {
+                button_name: buttonName,
+                source: "homepage"
+            });
+        }
+
+        document.getElementById('homepage').addEventListener('click', () => logNavButtonClick("home"));
+        document.getElementById('services').addEventListener('click', () => logNavButtonClick("services"));
+        document.getElementById('courses').addEventListener('click', () => logNavButtonClick("courses"));
+        document.getElementById('about').addEventListener('click', () => logNavButtonClick("about"));
+        document.getElementById('contacts').addEventListener('click', () => logNavButtonClick("contacts"));
+
+        document.getElementById('hero-btnn').addEventListener('click', () => {
+            amplitude.track('Explore Services Button Clicked', {
+                button_name: "hero_btn",
+                source: "homepage"
+            });
+        });
+
+        // Here we are going to fetch both variants
         experiment.getVariants().then(variants => {
-            const heroVariant = variants["hero_section_test"]; // Hero Section A/B Test
-            const navVariant = variants["nav_position_test"];  // Navigation Menu A/B Test
+            const heroVariant = variants["hero_section_test"]; 
+            const navVariant = variants["nav_position_test"]; 
 
             applyHeroSectionVariant(heroVariant);
             applyNavVariant(navVariant);
@@ -36,11 +97,11 @@
 
             if (variant === "B") {
                 container.innerHTML = `
-                    <div>
-                        <h1>Hire your tailored Technical Training services</h1>
-                        <h2>Adopting new technology is as vital to the business as it is scary for your employees. Fear no more and leverage highly tailored Technical Training to increase adoption from the get go.</h2>
+                    <div style="background-color: white; padding: 30px; border-radius: 10px;">
+                        <h1 style="color: black;">Hire your tailored Technical Training services</h1>
+                        <h2 style="color: black;">Adopting new technology is as vital to the business as it is scary for your employees. Fear no more and leverage highly tailored Technical Training to increase adoption from the get go.</h2>
                         <br>
-                        <h2>Take action now and find out how we help businesses in an ever-changing Tech world keep their employees up to date with their latest software acquisitions.</h2>
+                        <h2 style="color: black;">Take action now and find out how we help businesses in an ever-changing Tech world keep their employees up to date with their latest software acquisitions.</h2>
                         <a href="#home" class="hero-btn" id="hero-btnn" style="background-color: rgba(120, 47, 93, 1); font-size: 21px !important;">Variant B!</a>
                     </div>
                 `;
@@ -72,93 +133,5 @@
             amplitude.track('Nav Position Variant Shown', { variant: variant });
         }
     </script>
-
-    <link rel="shortcut icon" type="x-icon" href="Train-IT logo(1).png">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Train-IT</title>
-    <link rel="stylesheet" href="trainit.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/914b751213.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <section class="header">
-        <nav>
-            <a href="/Users/giuliano.giannini/Desktop/Projects/Training Azienda/trainingorg.html" id="logo">
-                <img src="Train-IT logo(1).png" alt="Logo Azienda">
-            </a>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="#home" id="homepage">Home</a></li>
-                    <li><a href="#servizi" id="services">Services</a></li>
-                    <li><a href="#corsi" id="courses">Courses</a></li>
-                    <li><a href="#chi-siamo" id="about">About</a></li>
-                    <li><a href="#contatti" id="contacts">Contacts</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Hero Section (A/B Test will be applied here) -->
-        <div id="hero-section">
-            <!-- Default version will be replaced dynamically -->
-        </div>
-    </section>
-
-    <section class="servizi">
-        <div></div>
-    </section>
-
-    <script type="text/javascript">
-        function logNavButtonClick(buttonName) {
-            amplitude.track('Nav Button Clicked', {
-                button_name: buttonName,
-                source: "homepage"
-            });
-        }
-
-        document.getElementById('homepage').addEventListener('click', () => logNavButtonClick("home"));
-        document.getElementById('services').addEventListener('click', () => logNavButtonClick("services"));
-        document.getElementById('courses').addEventListener('click', () => logNavButtonClick("courses"));
-        document.getElementById('about').addEventListener('click', () => logNavButtonClick("about"));
-        document.getElementById('contacts').addEventListener('click', () => logNavButtonClick("contacts"));
-
-        document.getElementById('hero-section').addEventListener('click', (event) => {
-            if (event.target.id === 'hero-btnn') {
-                amplitude.track('Explore Services Button Clicked', {
-                    button_name: "hero_btn",
-                    source: "homepage"
-                });
-            }
-        });
-    </script>
-
-    <style>
-        .nav-links {
-            display: flex;
-            justify-content: flex-end; /* Default: Right aligned */
-            width: auto;
-        }
-
-        .nav-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links ul li {
-            display: inline;
-        }
-
-        .nav-links ul li a {
-            text-decoration: none;
-            font-size: 18px;
-            color: black;
-        }
-    </style>
 </body>
 </html>
