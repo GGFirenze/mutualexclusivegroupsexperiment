@@ -28,22 +28,15 @@
             },
         });
         
-        // Wait for DOM to be fully loaded before initializing experiment
         document.addEventListener('DOMContentLoaded', function() {
-            // Properly initialize experiment from window object
+
             const experiment = window.Experiment.initializeWithAmplitudeAnalytics('client-d99GRnmEsSd4UxU8zTwaKwQBmHC28UFd');
-            
-            // Start the experiment and fetch variants
             experiment.fetch().then(() => {
-                // Access variants - this will trigger exposure events
                 const heroVariant = experiment.variant("testforthefork");
                 const navVariant = experiment.variant("testforthefork2");
-                
-                // Apply variants if they exist and aren't "off"
                 if (heroVariant && heroVariant.value) {
                     applyHeroSectionVariant(heroVariant.value);
                 }
-                
                 if (navVariant && navVariant.value) {
                     applyNavVariant(navVariant.value);
                 }
@@ -64,8 +57,7 @@
                             <a href="#home" class="hero-btn" id="hero-btnn" style="background-color: rgba(120, 47, 93, 1); font-size: 21px !important;">Variant B!</a>
                         </div>
                     `;
-                    
-                    // Re-attach event listener to the new button
+
                     setTimeout(() => {
                         document.getElementById('hero-btnn')?.addEventListener('click', () => {
                             amplitude.track('Explore Services Button Clicked', {
@@ -85,8 +77,7 @@
                             <a href="#home" class="hero-btn" id="hero-btnn">Explore our services!</a>
                         </div>
                     `;
-                    
-                    // Re-attach event listener to the new button
+
                     setTimeout(() => {
                         document.getElementById('hero-btnn')?.addEventListener('click', () => {
                             amplitude.track('Explore Services Button Clicked', {
